@@ -1,9 +1,7 @@
 package stepdefinitions;
-
-import com.saucedemo.questions.AddItemQuestion;
-import com.saucedemo.questions.OrderByQuestion;
-import com.saucedemo.tasks.AddItemsTask;
-import com.saucedemo.tasks.RemoveItemTask;
+import com.saucedemo.questions.CheckOutQuestion;
+import com.saucedemo.tasks.CheckoutDataTask;
+import com.saucedemo.tasks.CheckoutTask;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,29 +15,29 @@ import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
 import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.Matchers.equalTo;
 
-public class AddItemsDefinitions {
+public class ChekoutDefinitions {
     private Actor wilmer;
     @Before
     public void setup() {
         OnStage.setTheStage(new OnlineCast());
         wilmer = OnStage.theActorCalled("wilmer");
     }
-    @Given("Agregar dos items al carrito")
-    public void agregarDosItemsAlCarrito() {
+    @Given("En el carrito click en checkout")
+    public void enElCarritoClickEnCheckout() {
         wilmer.wasAbleTo(
-                AddItemsTask.addItems()
+                CheckoutTask.ClickCheckout()
         );
     }
-    @When("click en carrito y click remove al segundo item")
-    public void clickEnCarritoYClickRemoveAlSegundoItem() {
+    @When("ingresar los datos {string} {string} {string} luego click continue y click finish")
+    public void ingresarLosDatosLuegoClickContinueYClickFinish(String name, String lastName, String zipCode) {
         wilmer.wasAbleTo(
-                RemoveItemTask.removeItem()
+                CheckoutDataTask.IngresarDatosCheckout(name, lastName, zipCode)
         );
     }
-    @Then("validar que se encuentre el item {string}")
-    public void validarQueSeEncuentreElItem(String string) {
+    @Then("validar estar en la pagina de checkout {string}")
+    public void validarEstarEnLaPaginaDeCheckout(String checkOutText) {
         theActorInTheSpotlight().should(
-                seeThat("Title", AddItemQuestion.value(),equalTo(string))
+                seeThat("Title", CheckOutQuestion.value(),equalTo(checkOutText))
         );
     }
 }

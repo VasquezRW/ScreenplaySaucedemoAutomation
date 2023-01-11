@@ -30,8 +30,8 @@ public class OrderByDefinitions {
                 SelectOrderTask.clickOption(string)
         );
     }
-    @Then("validamos que los items esten ordenados")
-    public void validamosQueLosItemsEstenOrdenados() {
+    @Then("validar que los items esten ordenados")
+    public void validarQueLosItemsEstenOrdenados() {
         System.out.println("validado");
     }
 

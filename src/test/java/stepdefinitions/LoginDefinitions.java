@@ -18,8 +18,7 @@ import static net.serenitybdd.screenplay.actors.OnStage.theActorInTheSpotlight;
 import static org.hamcrest.Matchers.equalTo;
 
 public class LoginDefinitions {
-    @CastMember
-    private Actor wilmer = Actor.named("Wilmer");
+    private Actor wilmer;
     @Before
     public void setUp(){
         OnStage.setTheStage(new OnlineCast());
@@ -38,11 +37,10 @@ public class LoginDefinitions {
                 LoginTask.login(username, password)
         );
     }
-    @Then("validamos que estemos en la pagina principal {string}")
-    public void validamosQueEstemosEnLaPaginaPrincipal(String title) {
+    @Then("validar que estemos en la pagina principal {string}")
+    public void validarQueEstemosEnLaPaginaPrincipal(String title) {
         theActorInTheSpotlight().should(
                 seeThat("Title", LoginQuestion.value(),equalTo(title))
         );
     }
-
 }
